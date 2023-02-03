@@ -1,6 +1,6 @@
 package com.bms.data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-public record Loan(int userId, double requestAmount, double requestLeft, LocalDateTime date, Status status) {
+public record Loan(int userId, double requestAmount, double requestLeft, Timestamp date, Status status) {
 }

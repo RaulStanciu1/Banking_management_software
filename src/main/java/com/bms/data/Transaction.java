@@ -1,6 +1,6 @@
 package com.bms.data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-public record Transaction(int userId, int receiverId, LocalDateTime date, double amount) {
+public record Transaction(int userId, int receiverId, Timestamp date, double amount) {
 }

@@ -1,6 +1,6 @@
 package com.bms.data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-public record Banking(int userId, BankingType type, double amount, LocalDateTime date) {
+public record Banking(int userId, BankingType type, double amount, Timestamp date) {
 }

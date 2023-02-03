@@ -1,8 +1,8 @@
 package com.bms.data;
 
 public class UserInfo {
-    private int id;
-    private String username;
+    private final int id;
+    private final String username;
     public UserInfo(int id, String username){
         this.id=id;
         this.username=username;
