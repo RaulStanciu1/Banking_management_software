@@ -1,6 +1,7 @@
 package com.bms.auth;
 
 
+import com.bms.data.Admin;
 import com.bms.data.Currency;
 import com.bms.data.User;
 
@@ -13,7 +14,7 @@ public class DBAuth {
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
-    private static String createBankingCode(String username){
+    public static String createBankingCode(String username){
         return "RO20BMS@"+username;
     }
     public static String getStoredPassword(String username) throws Exception{
@@ -76,7 +77,23 @@ public class DBAuth {
                         rs.getDouble("balance"));
             }
         }catch(Exception e){
-            System.out.println(e);
+            throw new Exception("Something went wrong");
+        }
+        if(user == null) throw new Exception("Something went wrong");
+        return user;
+    }
+
+    public static Admin getAdmin(String username) throws Exception {
+        Admin user=null;
+        String SQL="SELECT id,username FROM bms.user WHERE username=?";
+        try(Connection conn = DBAuth.connect()){
+            PreparedStatement stmt = conn.prepareStatement(SQL);
+            stmt.setString(1,username);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                user = new Admin(rs.getInt("id"),rs.getString("username"));
+            }
+        }catch(Exception e){
             throw new Exception("Something went wrong");
         }
         if(user == null) throw new Exception("Something went wrong");

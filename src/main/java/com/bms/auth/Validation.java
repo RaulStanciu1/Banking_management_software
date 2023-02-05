@@ -17,7 +17,7 @@ public class Validation {
     }
     public static void loginValidation(String username,String password) throws Exception{
         if(username.isEmpty() || password.isEmpty()) throw new Exception("All fields are required to log in");
-        if(!DBAuth.checkUsernameExists(username)) throw new Exception("Username doesn't exist");
+        if(!DBAuth.checkUsernameExists(username)) throw new Exception("Username or password are incorrect");
         String dbPassword = DBAuth.getStoredPassword(username);
         if(!Password.validatePassword(password,dbPassword)) throw new Exception("Username or password are incorrect");
     }

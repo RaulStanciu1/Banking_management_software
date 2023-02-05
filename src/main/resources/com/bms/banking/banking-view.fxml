@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bms.banking.BankingController">
+   <left>
+      <AnchorPane prefHeight="482.0" prefWidth="214.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle height="481.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="217.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="463.0" layoutX="8.0" layoutY="14.0" stroke="WHITE" strokeWidth="2.0" width="200.0" />
+            <Text fill="WHITE" layoutX="57.0" layoutY="52.0" stroke="BLACK" strokeType="OUTSIDE" text="Banking">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="269.0" stroke="BLACK" strokeType="OUTSIDE" text="Welcome">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="name" fill="WHITE" layoutX="50.0" layoutY="296.0" stroke="BLACK" strokeType="OUTSIDE" text="user" textAlignment="CENTER" wrappingWidth="116.79998397827148">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="58.0" layoutY="352.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #c93c32;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Text fill="WHITE" layoutX="25.0" layoutY="84.0" stroke="BLACK" strokeType="OUTSIDE" text="Management">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="56.0" layoutY="116.0" stroke="BLACK" strokeType="OUTSIDE" text="Software">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="413.0" prefWidth="440.0" BorderPane.alignment="CENTER">
+         <children>
+            <Accordion layoutX="20.0" layoutY="10.0" prefHeight="460.0" prefWidth="460.0">
+              <panes>
+                <TitledPane animated="false" prefHeight="257.0" prefWidth="354.0" text="Current Balance">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="378.0">
+                           <children>
+                              <Rectangle height="349.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <ImageView fx:id="currencyFlag" fitHeight="71.0" fitWidth="115.0" layoutX="173.0" layoutY="22.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@eu.png" />
+                                 </image></ImageView>
+                              <Text fill="WHITE" layoutX="179.0" layoutY="118.0" stroke="BLACK" strokeType="OUTSIDE" text="Balance">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="25.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="currBalance" fill="WHITE" layoutX="69.0" layoutY="167.0" stroke="BLACK" strokeType="OUTSIDE" text="0 TEST_CURRENCY" textAlignment="CENTER" wrappingWidth="321.603515625">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="25.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                </TitledPane>
+                <TitledPane animated="false" expanded="false" text="Banking Services">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle height="349.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <Button layoutX="147.0" layoutY="174.0" mnemonicParsing="false" onAction="#openDepositWindow" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #2fa5cc;" text="Deposit" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                              <Button layoutX="148.0" layoutY="70.0" mnemonicParsing="false" onAction="#openWithdrawWindow" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #34bdbf;" text="Withdraw" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                              <Text fill="WHITE" layoutX="111.0" layoutY="39.0" stroke="BLACK" strokeType="OUTSIDE" text="Banking Options:">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="25.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="147.0" layoutY="270.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #2f4ecc;" text="Ask For Loan" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                           </children></AnchorPane>
+                  </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                </TitledPane>
+                <TitledPane animated="false" expanded="false" text="Make a Transaction">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle height="349.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <Text fill="WHITE" layoutX="160.0" layoutY="39.0" stroke="BLACK" strokeType="OUTSIDE" text="Transaction">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="25.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="92.0" layoutY="83.0" stroke="BLACK" strokeType="OUTSIDE" text="Your Banking Code:">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="bankingCode" fill="WHITE" layoutX="252.0" layoutY="83.0" stroke="BLACK" strokeType="OUTSIDE" text="RO20BMSuser">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="98.0" layoutY="86.0" mnemonicParsing="false" onAction="#copyToClipboard" prefHeight="22.0" prefWidth="124.0" style="-fx-background-color: #34bdbf;" text="Copy to Clipboard" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="10.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <VBox alignment="CENTER" layoutX="53.0" layoutY="121.0" prefHeight="200.0" prefWidth="375.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="amountToSend" maxWidth="-Infinity" promptText="Amount">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="receiverBankingCode" maxWidth="-Infinity" prefHeight="28.0" prefWidth="217.0" promptText="Receiver Banking Code">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Text fx:id="infoMsg" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: RED;">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Button mnemonicParsing="false" onAction="#commitTransaction" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #2f4ecc;" text="Finish Transaction" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="13.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                </TitledPane>
+                  <TitledPane animated="false" expanded="false" text="Your History">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle height="349.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <Text fill="WHITE" layoutX="158.0" layoutY="39.0" stroke="BLACK" strokeType="OUTSIDE" text="Your History">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="25.0" />
+                                 </font>
+                              </Text>
+                              <VBox alignment="TOP_CENTER" layoutX="110.0" layoutY="74.0" prefHeight="200.0" prefWidth="240.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#openDepositHistory" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #34bdbf;" text="Deposit History" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="13.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#openWithdrawHistory" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #2fa5cc;" text="Withdraw History" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="13.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#openLoanHistory" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #2f4ecc;" text="Loan History" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="13.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#openTransactionHistory" prefHeight="42.0" prefWidth="194.0" style="-fx-background-color: #2fcc8b;" text="Transaction History" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="13.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+         </children></AnchorPane>
+   </center>
+</BorderPane>

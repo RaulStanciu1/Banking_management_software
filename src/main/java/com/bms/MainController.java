@@ -1,14 +1,22 @@
 package com.bms;
 
+import com.bms.admin.AdminController;
 import com.bms.auth.DBAuth;
 import com.bms.auth.Validation;
+import com.bms.banking.BankingController;
+import com.bms.data.Admin;
 import com.bms.data.Currency;
 import com.bms.data.User;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainController {
     @FXML private TextField regUsername;
@@ -49,11 +57,30 @@ public class MainController {
             String password = logPassword.getText();
             Validation.loginValidation(username,password);
             if(username.equals("administrator")) {
-                //TODO: get Admin Object and run admin page
+                try{
+                    Admin admin = DBAuth.getAdmin(username);
+                    Stage parent =(Stage) currency.getScene().getWindow();
+                    FXMLLoader fxmlLoader = new FXMLLoader(AdminController.class.getResource("admin-view.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load());
+                    AdminController controller = fxmlLoader.getController();
+                    controller.init(admin);
+                    parent.setScene(scene);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
                 return;
             }
             User loggedUser = DBAuth.getUser(username);
-            //TODO: get User object and run user page
+            try{
+                Stage parent =(Stage) currency.getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(BankingController.class.getResource("banking-view.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                BankingController controller = fxmlLoader.getController();
+                controller.init(loggedUser);
+                parent.setScene(scene);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }catch(Exception e){
             loginError(e.getMessage());
         }
