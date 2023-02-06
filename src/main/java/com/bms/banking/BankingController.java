@@ -145,7 +145,22 @@ public class BankingController {
     }
 
     public void openLoanWindow(){
-
+        try{
+            Stage parent = (Stage) name.getScene().getWindow();
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(DepositController.class.getResource("loan-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            LoanController controller = fxmlLoader.getController();
+            controller.init(this);
+            stage.setTitle("BMS - Loan Window");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(parent);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void openDepositHistory(){

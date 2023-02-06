@@ -3,6 +3,7 @@ package com.bms.data;
 import com.bms.banking.DBBanking;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,5 +122,14 @@ public class User extends UserInfo{
             this.amount = (double) Math.round(this.amount*100)/100;
             return new Banking(this.getId(),BankingType.WITHDRAW,amount,Timestamp.valueOf(LocalDateTime.now()));
         }
+    }
+    public Loan createNewLoan(double amount) throws Exception{
+        if(amount<=100) throw new Exception("Amount cannot be less or equal to 100");
+        if(this.amount+amount>MAX_AMOUNT) throw new Exception("Amount is too big");
+        this.amount+=amount;
+        this.amount = (double) Math.round(this.amount*100)/100;
+        return new Loan(this.getId(),amount,(double)Math.round(this.amount*200)/100,
+                Timestamp.valueOf(LocalDateTime.now()),
+                Timestamp.valueOf(LocalDateTime.now().plusMonths(1)));
     }
 }

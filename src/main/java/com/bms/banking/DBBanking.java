@@ -1,9 +1,6 @@
 package com.bms.banking;
 
-import com.bms.data.Banking;
-import com.bms.data.Currency;
-import com.bms.data.Transaction;
-import com.bms.data.User;
+import com.bms.data.*;
 
 import java.sql.*;
 
@@ -98,6 +95,32 @@ public class DBBanking {
             stmt = conn.prepareStatement(SQL_2);
             stmt.setDouble(1,receiverNewAmount);
             stmt.setInt(2,t.receiverId());
+            stmt.execute();
+
+            conn.commit();
+            conn.setAutoCommit(true);
+        }catch(Exception e){
+            throw new Exception("Something went wrong");
+        }
+    }
+
+    public static void insertLoan(User user, Loan loanMade) throws Exception{
+        String SQL_1 = "INSERT INTO bms.loan (user,request_amount,request_left,date,next_payment) VALUES(?,?,?,?,?)";
+        String SQL_2 = "UPDATE bms.user SET balance=? where id=?";
+        try(Connection conn = DBBanking.connect()){
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement(SQL_1);
+            stmt.setInt(1,user.getId());
+            stmt.setDouble(2,loanMade.requestAmount());
+            stmt.setDouble(3,loanMade.requestLeft());
+            stmt.setTimestamp(4,loanMade.date());
+            stmt.setTimestamp(5,loanMade.nextPayment());
+            stmt.execute();
+
+            stmt = conn.prepareStatement(SQL_2);
+            stmt.setDouble(1,user.getAmount());
+            stmt.setInt(2,user.getId());
             stmt.execute();
 
             conn.commit();

@@ -26,7 +26,6 @@ public class LoanHistoryController {
     }
     public void init(int userId){
         try{
-            error();
             List<Loan> tmpList = DBHistory.getLoanList(userId);
             List<LoanModel> models = LoanModel.getModelList(tmpList);
             ObservableList<LoanModel> loanList = FXCollections.observableList(models);

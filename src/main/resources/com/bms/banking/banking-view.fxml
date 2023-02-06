@@ -177,7 +177,7 @@
                                     <Font name="Century Gothic Bold" size="25.0" />
                                  </font>
                               </Text>
-                              <Button layoutX="147.0" layoutY="270.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #2f4ecc;" text="Ask For Loan" textFill="WHITE">
+                              <Button layoutX="147.0" layoutY="270.0" mnemonicParsing="false" onAction="#openLoanWindow" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #2f4ecc;" text="Ask For Loan" textFill="WHITE">
                                  <font>
                                     <Font name="Century Gothic Bold" size="13.0" />
                                  </font>

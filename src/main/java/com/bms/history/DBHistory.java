@@ -43,6 +43,7 @@ public class DBHistory {
                                 rs.getTimestamp("next_payment")));
             }
         }catch(Exception e){
+            System.out.println(e);
             throw new Exception("Something went wrong");
         }
         return list;
