@@ -1,18 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bms.admin.AdminController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bms.admin.AdminController">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="482.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="89.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bms" />
+            <Rectangle height="481.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="217.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="463.0" layoutX="8.0" layoutY="14.0" stroke="WHITE" strokeWidth="2.0" width="200.0" />
+            <Text fill="WHITE" layoutX="57.0" layoutY="52.0" stroke="BLACK" strokeType="OUTSIDE" text="Banking">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="66.0" layoutY="198.0" stroke="BLACK" strokeType="OUTSIDE" text="Admin">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="48.0" layoutY="225.0" stroke="BLACK" strokeType="OUTSIDE" text="Window" textAlignment="CENTER" wrappingWidth="116.79998397827148">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="58.0" layoutY="352.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #c93c32;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Text fill="WHITE" layoutX="25.0" layoutY="84.0" stroke="BLACK" strokeType="OUTSIDE" text="Management">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="56.0" layoutY="116.0" stroke="BLACK" strokeType="OUTSIDE" text="Software">
+               <font>
+                  <Font name="Century Gothic Bold" size="25.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </left>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="410.0" BorderPane.alignment="CENTER" />
-   </right>
+   <center>
+      <AnchorPane prefHeight="413.0" prefWidth="440.0" BorderPane.alignment="CENTER">
+         <children>
+            <Accordion layoutX="20.0" layoutY="10.0" prefHeight="460.0" prefWidth="460.0">
+               <panes>
+                  <TitledPane animated="false" expanded="false" text="Daily Stats">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle height="377.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <PieChart fx:id="dailyStatsChart" layoutX="38.0" layoutY="28.0" prefHeight="321.0" prefWidth="382.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                  </TitledPane>
+                  <TitledPane animated="false" expanded="false" text="Total Stats">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle height="376.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <VBox alignment="TOP_CENTER" layoutX="45.0" layoutY="16.0" prefHeight="344.0" prefWidth="343.0" spacing="20.0">
+                                 <children>
+                                    <Text fx:id="deposits" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Deposits:" textAlignment="CENTER" wrappingWidth="365.60004806518555">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="withdraws" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Withdraws:" textAlignment="CENTER" wrappingWidth="359.9999351501465">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="transactions" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Transactions:" textAlignment="CENTER" wrappingWidth="365.60004806518555">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="loans" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Loans:" textAlignment="CENTER" wrappingWidth="363.200008392334">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="euro" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="EURO Stored:" textAlignment="CENTER" wrappingWidth="367.9999351501465">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="ron" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="RON Stored:" textAlignment="CENTER" wrappingWidth="362.399959564209">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="usd" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="USD Stored:" textAlignment="CENTER" wrappingWidth="366.399959564209">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="users" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Total Number of Users:" textAlignment="CENTER" wrappingWidth="367.1998863220215">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                  </TitledPane>
+                  <TitledPane animated="false" prefHeight="257.0" prefWidth="354.0" text="Current Users">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="378.0">
+                           <children>
+                              <Rectangle height="377.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="460.0">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.10354775935411453" green="0.5014516115188599" blue="0.8736842274665833" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.800000011920929" green="0.800000011920929" blue="0.800000011920929" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Rectangle>
+                              <TableView fx:id="userTable" layoutX="20.0" layoutY="14.0" prefHeight="350.0" prefWidth="417.0">
+                                <columns>
+                                  <TableColumn fx:id="userIdColumn" prefWidth="75.0" text="User ID" />
+                                  <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
+                                    <TableColumn fx:id="currencyColumn" prefWidth="75.0" text="Currency" />
+                                    <TableColumn fx:id="balanceColumn" prefWidth="75.0" text="Balance" />
+                                    <TableColumn fx:id="codeColumn" prefWidth="75.0" text="Code" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <font>
+                        <Font name="Century Gothic Bold" size="14.0" />
+                     </font>
+                  </TitledPane>
+               </panes>
+            </Accordion>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
