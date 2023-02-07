@@ -1,0 +1,59 @@
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+--
+-- Host: localhost    Database: bms
+-- ------------------------------------------------------
+-- Server version	8.0.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(300) NOT NULL,
+  `banking_code` varchar(50) DEFAULT NULL,
+  `currency` int DEFAULT NULL,
+  `balance` double DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `banking_cose_UNIQUE` (`banking_code`),
+  KEY `FK_currency_idx` (`currency`),
+  CONSTRAINT `FK_currency` FOREIGN KEY (`currency`) REFERENCES `currency` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (2,'administrator','1000:921301391831c5f151d8d10f6489996d:55dfc2a2916a05c276e89f4105ec77dc6fe9f0155d64574620816757a4fb4dc5dc9beb2f5b2f260cf97aa2dc35e178f463d73e13b9d410b046fbfae846ae3265','RO20BMS@administrator',1,0),(3,'customer1','1000:f389ba51ecfd6102515bac78eea120ea:545fd75edb86c0f012c3496134382930a9797ee542a95ea3b9a7b255845511fa62d80618ddd193574cc13fc5ceb91746b25b18cedc006841f886d8ba6505fc4d','RO20BMS@customer1',2,900),(4,'customer2','1000:750eb2a3d85b1901ab1141ebb8c21442:f42527b4ba43030dc35fdadcaab8e4fe657437fafe165bc99a4fa47872be26ab9334ae27bde79b49954dd4fa4c48bfbb0227361b75bad6d7fa0d0a7214c92b05','RO20BMS@customer2',1,0),(5,'customer3','1000:3590a3183b3d92dafe0656b5e34e59d8:53e52a5561e0eeb9c80c461819c4bb506acb1c96a65ef7475b0d0fb3feb240949a3abf21bea15147ee1bf0bb9438f791148196edfdb24780c40eb91b023e2cfe','RO20BMS@customer3',3,0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-02-07 16:24:52
