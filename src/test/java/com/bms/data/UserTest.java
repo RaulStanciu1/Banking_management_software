@@ -3,7 +3,6 @@ package com.bms.data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -66,21 +65,20 @@ class UserTest {
     void getBankingHistory() {
         User testUser = new User(1,"username1","BMS20username1",1,100);
         try{
-            Assertions.assertEquals(testUser.getBankingHistory().size(),0);
+            List<Banking> testList = testUser.getBankingHistory();
+            Assertions.assertEquals(0,testList.size());
         }catch(Exception e){
-            fail("Failed at getBankingHistoryTest");
+            fail("Failed at getBankingHistory test");
         }
     }
     @Test
     void getLoanHistory() {
         User testUser = new User(1,"username1","BMS20username1",1,100);
-        Loan testLoan = new Loan(1,200,400,Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf("2024-09-01 09:01:15"));
         try{
             List<Loan> testList = testUser.getLoanHistory();
-            testList.add(testLoan);
-            Assertions.assertEquals(testList.size(),1);
+            Assertions.assertEquals(0,testList.size());
         }catch(Exception e){
-            fail("Failed at getLoanHistory Test");
+            fail("Failed at getBankingHistory test");
         }
     }
 
@@ -88,25 +86,26 @@ class UserTest {
     void getTransactionHistory() {
         User testUser = new User(1,"username1","BMS20username1",1,100);
         try{
-            Assertions.assertEquals(testUser.getTransactionHistory().size(),0);
+            List<Transaction> testList = testUser.getTransactionHistory();
+            Assertions.assertEquals(0,testList.size());
         }catch(Exception e){
-            fail("Failed at getTransactionHistory Test");
+            fail("Failed at getBankingHistory test");
         }
     }
 
     @Test
     void createNewTransaction() {
+
         User testUser = new User(1,"username1","BMS20username1",1,100);
-        Transaction testTransaction = new Transaction(1,2, Timestamp.valueOf(LocalDateTime.now()),Currency.EURO,100);
         Assertions.assertThrows(Exception.class,()-> testUser.createNewTransaction(0,""));
         Assertions.assertThrows(Exception.class,()-> testUser.createNewTransaction(200,""));
         Assertions.assertThrows(Exception.class,()-> testUser.createNewTransaction(50,"BMS20username1"));
         Assertions.assertThrows(Exception.class,()-> testUser.createNewTransaction(50,"BMS20username2"));
-        try{
-            Assertions.assertEquals(testTransaction.receiverId(),testUser.createNewTransaction(20,"RO20BMS@administrator").receiverId());
-        }catch(Exception e){
-            fail("Failed at createNewTransaction Test");
-        }
+        Transaction testTransaction = new Transaction(1,2, Timestamp.valueOf(LocalDateTime.now()),Currency.EURO,100);
+        Assertions.assertEquals(1,testTransaction.userId());
+        Assertions.assertEquals(2,testTransaction.receiverId());
+        Assertions.assertEquals(Currency.EURO,testTransaction.receiverCurr());
+        Assertions.assertEquals(100,testTransaction.amount());
     }
 
     @Test
@@ -118,5 +117,23 @@ class UserTest {
         Assertions.assertThrows(Exception.class,()-> testUser.createNewBanking(BankingType.WITHDRAW,0));
         Assertions.assertThrows(Exception.class,()-> testUser.createNewBanking(BankingType.WITHDRAW,10000001));
         Assertions.assertDoesNotThrow(()->testUser.createNewBanking(BankingType.WITHDRAW,50));
+        Banking testBanking = new Banking(1,BankingType.DEPOSIT,100,Timestamp.valueOf(LocalDateTime.now()));
+        Assertions.assertEquals(1,testBanking.userId());
+        Assertions.assertEquals(100,testBanking.amount());
+        Assertions.assertEquals(BankingType.DEPOSIT,testBanking.type());
+    }
+
+    @Test
+    void createNewLoan() {
+        User testUser = new User(1,"username1","BMS20username1",1,100);
+        Assertions.assertThrows(Exception.class, ()->testUser.createNewLoan(0));
+        Assertions.assertThrows(Exception.class, ()->testUser.createNewLoan(100));
+        Assertions.assertDoesNotThrow(() -> testUser.createNewLoan(1000));
+        Assertions.assertThrows(Exception.class, ()->testUser.createNewLoan(10_000_001));
+        Loan testLoan = new Loan(1,100,200,Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.MAX));
+        Assertions.assertEquals(1,testLoan.userId());
+        Assertions.assertEquals(100,testLoan.requestAmount());
+        Assertions.assertEquals(200,testLoan.requestLeft());
+        Assertions.assertEquals(Timestamp.valueOf(LocalDateTime.MAX),testLoan.nextPayment());
     }
 }

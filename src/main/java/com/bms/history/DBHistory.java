@@ -9,10 +9,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DBHistory: A class used for database queries related to the history windows
+ */
 public class DBHistory {
     final static String URL = "jdbc:mysql://localhost:3306/bms";
     final static String USER = "bms_admin";
-    final static String PASS = "P@ssword";
+    final static String PASS = "P@ssword12";
+
+    /**
+     * Method used to get a banking given a type and a user
+     * @param userId the user id
+     * @param type the banking type(deposit or withdraw)
+     * @return a list of all banking made by that user
+     * @throws Exception exception if connection failed
+     */
     public static List<Banking> getBankingList(int userId, BankingType type) throws Exception{
         List<Banking> list = new ArrayList<>();
         String SQL="SELECT * FROM bms.banking WHERE user=? AND type=?";
@@ -30,6 +41,12 @@ public class DBHistory {
         return list;
     }
 
+    /**
+     * Method used to get loans asked by a user
+     * @param userId the user id
+     * @return list of loans
+     * @throws Exception exception if connection failed
+     */
     public static List<Loan> getLoanList(int userId) throws Exception{
         List<Loan> list = new ArrayList<>();
         String SQL="SELECT * FROM bms.loan WHERE user=?";
@@ -49,6 +66,12 @@ public class DBHistory {
         return list;
     }
 
+    /**
+     * Method used to get transactions made by a user
+     * @param userId the user id
+     * @return list of transactions
+     * @throws Exception exception if the connection failed
+     */
     public static List<Transaction> getTransactionList(int userId) throws Exception{
         List<Transaction> list = new ArrayList<>();
         String SQL="SELECT * FROM bms.transaction WHERE sender=?";

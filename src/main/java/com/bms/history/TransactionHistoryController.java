@@ -1,9 +1,6 @@
 package com.bms.history;
 
-import com.bms.data.Banking;
-import com.bms.data.BankingType;
 import com.bms.data.Transaction;
-import com.bms.history.models.BankingModel;
 import com.bms.history.models.TransactionModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,17 +12,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
+/**
+ * TransactionHistoryController: A class used for event handling of the transaction history window
+ */
 public class TransactionHistoryController {
     @FXML private TableView<TransactionModel> transactionTable;
     @FXML private TableColumn<TransactionModel,String> receiverColumn;
     @FXML private TableColumn<TransactionModel,String> amountColumn;
     @FXML private TableColumn<TransactionModel,String> dateColumn;
     @FXML private TableColumn<TransactionModel,String> currencyColumn;
+
+    /**
+     * Helper method used to display an error alert
+     */
     private void error(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Something went wrong");
         alert.showAndWait();
     }
+
+    /**
+     * Function that runs upon opening window
+     * @param userId the user id
+     */
     public void init(int userId){
         try{
             List<Transaction> tmpList = DBHistory.getTransactionList(userId);

@@ -2,7 +2,6 @@ package com.bms.banking;
 
 import com.bms.Main;
 import com.bms.MainController;
-import com.bms.data.BankingType;
 import com.bms.data.Transaction;
 import com.bms.data.User;
 import com.bms.history.DepositHistoryController;
@@ -23,6 +22,9 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+/**
+ * BankingController: A class used for handling events on the Banking window
+ */
 public class BankingController {
     @FXML private Text name;
     @FXML private ImageView currencyFlag;
@@ -32,24 +34,50 @@ public class BankingController {
     @FXML private TextField amountToSend;
     @FXML private TextField receiverBankingCode;
     private User user;
+
+    /**
+     * Helper method for displaying error message
+     * @param msg the error message
+     */
     private void transactionError(String msg){
         infoMsg.setStyle("-fx-fill: RED");
         infoMsg.setText(msg);
     }
+
+    /**
+     * Helper method for displaying success message
+     */
     private void transactionSuccess(){
         infoMsg.setStyle("-fx-fill: GREEN");
         infoMsg.setText("Transaction was made successfully");
     }
+
+    /**
+     * Helper method used for clearing input
+     */
     private void transactionClear(){
         amountToSend.setText("");
         receiverBankingCode.setText("");
     }
+
+    /**
+     * User getter
+     * @return the user
+     */
     public User getUser(){
         return user;
     }
+
+    /**
+     * Helper method used for updating balance upon any changes made
+     */
     public void updateBalance(){
         currBalance.setText(this.user.getAmount()+" "+this.user.getCurrency().getSymbol());
     }
+
+    /**
+     * On Action Event for the logout button
+     */
     public void logout(){
         try {
             this.user = null;
@@ -65,6 +93,11 @@ public class BankingController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method used upon opening the window
+     * @param user the user object
+     */
     public void init(User user){
         this.user=user;
         name.setText(this.user.getUsername());
@@ -78,6 +111,10 @@ public class BankingController {
         currBalance.setText(this.user.getAmount()+" "+this.user.getCurrency().getSymbol());
         bankingCode.setText(this.user.getBankingCode());
     }
+
+    /**
+     * On Action event for the copy to clipboard button
+     */
     public void copyToClipboard(){
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent content = new ClipboardContent();
@@ -85,6 +122,9 @@ public class BankingController {
         clipboard.setContent(content);
     }
 
+    /**
+     * On Action event for the make a transaction button
+     */
     public void commitTransaction(){
         try{
             infoMsg.setText("");
@@ -104,6 +144,9 @@ public class BankingController {
         }
     }
 
+    /**
+     * On Action event for the deposit button
+     */
     public void openDepositWindow(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();
@@ -124,6 +167,9 @@ public class BankingController {
 
     }
 
+    /**
+     * On Action event for the withdraw button
+     */
     public void openWithdrawWindow(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();
@@ -144,6 +190,9 @@ public class BankingController {
 
     }
 
+    /**
+     * On Action event for the loan button
+     */
     public void openLoanWindow(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();
@@ -163,6 +212,9 @@ public class BankingController {
         }
     }
 
+    /**
+     * On Action event for the deposit history button
+     */
     public void openDepositHistory(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();
@@ -182,6 +234,9 @@ public class BankingController {
         }
     }
 
+    /**
+     * On Action event for the withdraw history button
+     */
     public void openWithdrawHistory(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();
@@ -201,6 +256,9 @@ public class BankingController {
         }
     }
 
+    /**
+     * On Action event for the transaction history button
+     */
     public void openTransactionHistory(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();
@@ -220,6 +278,9 @@ public class BankingController {
         }
     }
 
+    /**
+     * On Action event for the loan history button
+     */
     public void openLoanHistory(){
         try{
             Stage parent = (Stage) name.getScene().getWindow();

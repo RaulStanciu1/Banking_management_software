@@ -7,10 +7,19 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * LoanRoutine: A Class used for checking every due payments on every loan and automatically extracting the balance from the user
+ */
 public class LoanRoutine {
     final static String URL = "jdbc:mysql://localhost:3306/bms";
     final static String USER = "bms_admin";
-    final static String PASS = "P@ssword";
+    final static String PASS = "P@ssword12";
+
+    /**
+     * Method to search the database for any due loans
+     * @return a list of all the due loans
+     * @throws Exception exception if connection failed
+     */
     public static List<LoanRecord> lookForDueLoans() throws Exception{
         List<LoanRecord> loans = new ArrayList<>();
         String SQL="SELECT * from bms.loan WHERE next_payment<CURRENT_TIMESTAMP AND request_left>0";
@@ -34,6 +43,12 @@ public class LoanRoutine {
         }
         return loans;
     }
+
+    /**
+     * Method used to update the payment on every found loan
+     * @param l the list of loans
+     * @throws Exception exception if connection failed
+     */
     public static void takePayment(List<LoanRecord> l) throws Exception{
         String SQL_1 = "UPDATE bms.loan SET next_payment = ?";
         String SQL_USER_BALANCE="SELECT balance from bms.user WHERE id=?";
@@ -90,6 +105,11 @@ public class LoanRoutine {
             throw new Exception("Database Transaction failed, Terminating Routine");
         }
     }
+
+    /**
+     * Starting point of the Routine
+     * @param args arguments(none used)
+     */
     public static void main(String[] args){
         try{
             do{

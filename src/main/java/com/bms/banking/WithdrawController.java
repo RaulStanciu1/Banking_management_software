@@ -10,6 +10,9 @@ import javafx.scene.text.Text;
 
 import java.util.Objects;
 
+/**
+ * WithdrawController: A class used for event handling for the withdraw window
+ */
 public class WithdrawController {
     private BankingController parent;
     @FXML
@@ -17,14 +20,28 @@ public class WithdrawController {
     @FXML private Text currBalance;
     @FXML private Text infoMsg;
     @FXML private TextField amountToWithdraw;
+
+    /**
+     * Helper method used for displaying an error message
+     * @param msg the error message
+     */
     private void withdrawError(String msg){
         infoMsg.setStyle("-fx-fill: RED");
         infoMsg.setText(msg);
     }
+
+    /**
+     * Helper method used for displaying a success message
+     */
     private void withdrawSuccess(){
         infoMsg.setStyle("-fx-fill: GREEN");
         infoMsg.setText("Amount successfully withdrawn");
     }
+
+    /**
+     * Function that runs upon opening the window
+     * @param parent the parent window
+     */
     public void init(BankingController parent){
         this.parent=parent;
         String currPath = "";
@@ -37,6 +54,9 @@ public class WithdrawController {
         currBalance.setText(this.parent.getUser().getAmount()+" "+this.parent.getUser().getCurrency().getSymbol());
     }
 
+    /**
+     * On Action for the withdraw button
+     */
     public void commitWithdraw(){
         try {
             double amount;
@@ -55,6 +75,10 @@ public class WithdrawController {
             withdrawError(e.getMessage());
         }
     }
+
+    /**
+     * Function that updates ui upon balance changes
+     */
     public void updateBalance(){
         currBalance.setText(this.parent.getUser().getAmount()+" "+this.parent.getUser().getCurrency().getSymbol());
     }

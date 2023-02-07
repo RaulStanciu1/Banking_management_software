@@ -13,15 +13,27 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
+/**
+ * WithdrawHistoryController: A class used for event handling of the withdrawal history window
+ */
 public class WithdrawHistoryController {
     @FXML private TableView<BankingModel> withdrawTable;
     @FXML private TableColumn<BankingModel,String> amountColumn;
     @FXML private TableColumn<BankingModel,String> dateColumn;
+
+    /**
+     * Helper method used for displaying an error alert
+     */
     private void error(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Something went wrong");
         alert.showAndWait();
     }
+
+    /**
+     * Function that runs upon opening the window
+     * @param userId the user id
+     */
     public void init(int userId){
         try{
             List<Banking> tmpList = DBHistory.getBankingList(userId, BankingType.WITHDRAW);

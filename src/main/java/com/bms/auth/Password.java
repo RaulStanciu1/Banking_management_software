@@ -7,7 +7,15 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 
+/**
+ * Password: a helper class used for password hashing
+ */
 public class Password {
+    /**
+     * Generate a password hash
+     * @param password the password
+     * @return the hashed password
+     */
     public static String generateStrongPasswordHash(String password)
             throws NoSuchAlgorithmException, InvalidKeySpecException
     {
@@ -21,6 +29,13 @@ public class Password {
         byte[] hash = skf.generateSecret(spec).getEncoded();
         return iterations + ":" + toHex(salt) + ":" + toHex(hash);
     }
+
+    /**
+     * Method to check if a password and a stored password match
+     * @param originalPassword the original password
+     * @param storedPassword the password in the database
+     * @return true if passwords match, false otherwise
+     */
     public static boolean validatePassword(String originalPassword, String storedPassword)
             throws NoSuchAlgorithmException, InvalidKeySpecException
     {

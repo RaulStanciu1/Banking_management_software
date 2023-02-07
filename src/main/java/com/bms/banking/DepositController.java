@@ -10,20 +10,37 @@ import javafx.scene.text.Text;
 
 import java.util.Objects;
 
+/**
+ * DepositController: A class used for event handling in the deposit window
+ */
 public class DepositController {
     private BankingController parent;
     @FXML private ImageView currencyFlag;
     @FXML private Text currBalance;
     @FXML private Text infoMsg;
     @FXML private TextField amountToDeposit;
+
+    /**
+     * Helper method for displaying error message
+     * @param msg error message
+     */
     private void depositError(String msg){
         infoMsg.setStyle("-fx-fill: RED");
         infoMsg.setText(msg);
     }
+
+    /**
+     * Helper method for displaying a success message
+     */
     private void depositSuccess(){
         infoMsg.setStyle("-fx-fill: GREEN");
         infoMsg.setText("Amount successfully deposited");
     }
+
+    /**
+     * Function that runs upon opening the window
+     * @param parent the parent window
+     */
     public void init(BankingController parent){
         this.parent=parent;
         String currPath = "";
@@ -36,6 +53,9 @@ public class DepositController {
         currBalance.setText(this.parent.getUser().getAmount()+" "+this.parent.getUser().getCurrency().getSymbol());
     }
 
+    /**
+     * On Action event for the Make a deposit button
+     */
     public void commitDeposit(){
         try {
             double amount;
@@ -54,6 +74,10 @@ public class DepositController {
             depositError(e.getMessage());
         }
     }
+
+    /**
+     * A method used for updating the ui upon modification to the balance
+     */
     public void updateBalance(){
         currBalance.setText(this.parent.getUser().getAmount()+" "+this.parent.getUser().getCurrency().getSymbol());
     }

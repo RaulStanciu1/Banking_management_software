@@ -4,7 +4,6 @@ import com.bms.Main;
 import com.bms.MainController;
 import com.bms.data.Admin;
 import com.bms.data.User;
-import com.bms.history.models.BankingModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +19,9 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * AdminController: Class used for handling the admin window events
+ */
 public class AdminController {
     @FXML private Text deposits;
     @FXML private Text withdraws;
@@ -37,11 +39,20 @@ public class AdminController {
     @FXML private TableColumn<UserModel,String> balanceColumn;
     @FXML private TableColumn<UserModel,String> codeColumn;
     private Admin admin;
+
+    /**
+     * Helper function to show an alert
+     * @param msg error message
+     */
     private void error(String msg){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(msg);
         alert.showAndWait();
     }
+
+    /**
+     * Helper function to add the pie chart data
+     */
     private void updateDailyStats(){
         try{
             ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -54,6 +65,10 @@ public class AdminController {
         }
 
     }
+
+    /**
+     * Helper function to update all the bank stats
+     */
     private void updateTotalStats(){
         try{
             deposits.setText("Deposits: "+this.admin.getTotalStats().deposits());
@@ -68,6 +83,10 @@ public class AdminController {
             error(e.getMessage());
         }
     }
+
+    /**
+     * Helper function to add all users to the table
+     */
     private void updateCurrentUsers(){
         try{
             List<User> tmpList = Admin.getAllUsers();
@@ -83,12 +102,20 @@ public class AdminController {
             error(e.getMessage());
         }
     }
+
+    /**
+     * Function used to add all the necessary data on the interface
+     */
     public void updateUI(){
         updateDailyStats();
         updateTotalStats();
         updateCurrentUsers();
     }
 
+    /**
+     * Function that runs upon starting window
+     * @param admin admin info
+     */
     public void init(Admin admin){
         this.admin=admin;
         try{
@@ -100,6 +127,10 @@ public class AdminController {
         }
 
     }
+
+    /**
+     * OnAction function for the logout button
+     */
     public void logout(){
         try {
             this.admin = null;

@@ -16,8 +16,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
+/**
+ * MainController: A class used for event handling for the main window
+ */
 public class MainController {
     @FXML private TextField regUsername;
     @FXML private PasswordField regPassword;
@@ -28,21 +29,43 @@ public class MainController {
     @FXML private TextField logUsername;
     @FXML private PasswordField logPassword;
     @FXML private Label logErrMsg;
+
+    /**
+     * Function that runs upon starting the application
+     */
     public void init(){
         currency.getItems().addAll(Currency.EURO,Currency.RON,Currency.USD);
         currency.getSelectionModel().selectFirst();
     }
+
+    /**
+     * Helper method for displaying a login error message
+     * @param msg login error message
+     */
     private void loginError(String msg){
         logErrMsg.setText(msg);
     }
+
+    /**
+     * Helper method used for displaying a register error message
+     * @param msg register error message
+     */
     private void registerError(String msg){
         regErrMsg.setText(msg);
     }
+
+    /**
+     * Helper method used for cleaning user error or success messages
+     */
     private void cleanMsg(){
         logErrMsg.setText("");
         regErrMsg.setText("");
         successMsg.setText("");
     }
+
+    /**
+     * Helper method used for cleaning user input
+     */
     private void cleanInput(){
         logUsername.setText("");
         logPassword.setText("");
@@ -50,6 +73,10 @@ public class MainController {
         regPassword.setText("");
         regConfirm.setText("");
     }
+
+    /**
+     * On Action event for the login button
+     */
     public void login(){
         cleanMsg();
         try{
@@ -85,6 +112,10 @@ public class MainController {
             loginError(e.getMessage());
         }
     }
+
+    /**
+     * On Action event for the register button
+     */
     public void register(){
         cleanMsg();
         try{

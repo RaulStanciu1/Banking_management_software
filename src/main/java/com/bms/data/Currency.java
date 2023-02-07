@@ -1,7 +1,15 @@
 package com.bms.data;
 
+/**
+ * Currency: Enum used for storing different currencies
+ */
 public enum Currency {
     EURO,RON,USD;
+
+    /**
+     * Method to get the currency's symbol
+     * @return the symbol
+     */
     public String getSymbol(){
         if (this == Currency.RON) {
             return "RON";
@@ -13,6 +21,13 @@ public enum Currency {
             return "$";
         }
     }
+
+    /**
+     * Helper method used to get to conversion of two currencies
+     * @param c1 first currency
+     * @param c2 second currency
+     * @return conversion rate
+     */
     private static double getConversionRate(Currency c1, Currency c2){
         if(c1 == c2){
             return 1d;
@@ -32,6 +47,14 @@ public enum Currency {
             return 0.92;
         }
     }
+
+    /**
+     * Method used to convert some amount from one currency to another
+     * @param c1 the original currency
+     * @param c2 the currency to convert to
+     * @param amount the amount to convert
+     * @return the converted amount
+     */
     public static double convertFromTo(Currency c1, Currency c2, double amount){
         return (double)Math.round(amount*getConversionRate(c1,c2) * 100d) / 100d;
     }

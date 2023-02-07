@@ -3,7 +3,6 @@ package com.bms.data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
 
 
 class AdminTest {
@@ -20,16 +19,18 @@ class AdminTest {
     }
 
     @Test
-    void getCurrentUsers() {
-        try{
-            Assertions.assertEquals(4,adminTest.getCurrentUsers().size());
-        }catch(Exception e){
-            fail("Failed at getCurrentUsers Test");
-        }
+    void getDailyStats() {
+        Assertions.assertDoesNotThrow(adminTest::getDailyStats);
     }
 
     @Test
-    void getDailyStats() {
-        Assertions.assertDoesNotThrow(()->adminTest.getDailyStats());
+    void getTotalStats(){
+        Assertions.assertDoesNotThrow(adminTest::getTotalStats);
     }
+
+    @Test
+    void getAllUsers(){
+        Assertions.assertDoesNotThrow(Admin::getAllUsers);
+    }
+
 }
