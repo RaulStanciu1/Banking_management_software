@@ -134,6 +134,7 @@ public class DBBanking {
 
             conn.commit();
             conn.setAutoCommit(true);
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -166,6 +167,7 @@ public class DBBanking {
 
             conn.commit();
             conn.setAutoCommit(true);
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }

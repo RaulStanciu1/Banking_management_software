@@ -39,6 +39,8 @@ public class Admin extends UserInfo{
                     this.dailyStats = new Stats(rs.getInt("banking_stats"),rs.getInt("loan_stats"),
                             rs.getInt("transaction_stats"));
                 }
+                rs.close();
+                stmt.close();
             }catch(Exception e){
                 throw new Exception("Something went wrong");
             }
@@ -69,6 +71,8 @@ public class Admin extends UserInfo{
                             rs.getInt("users")
                     );
                 }
+                rs.close();
+                stmt.close();
             }catch(Exception e){
                 throw new Exception("Something went wrong");
             }
@@ -95,6 +99,8 @@ public class Admin extends UserInfo{
                         rs.getDouble("balance")
                 ));
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }

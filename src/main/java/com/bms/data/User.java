@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User: A class used for storing every information related to a user of the applciation
+ * User: A class used for storing every information related to a user of the application
  */
 public class User extends UserInfo{
     final static String URL = "jdbc:mysql://localhost:3306/bms";
@@ -78,6 +78,8 @@ public class User extends UserInfo{
                             rs.getDouble("amount"),rs.getTimestamp("date"))
                 );
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -103,6 +105,8 @@ public class User extends UserInfo{
                         rs.getTimestamp("next_payment")
                 ));
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -129,6 +133,8 @@ public class User extends UserInfo{
                             rs.getDouble("amount")
                         ));
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -186,7 +192,7 @@ public class User extends UserInfo{
         if(this.amount+amount>MAX_AMOUNT) throw new Exception("Amount is too big");
         this.amount+=amount;
         this.amount = (double) Math.round(this.amount*100)/100;
-        return new Loan(this.getId(),amount,(double)Math.round(this.amount*200)/100,
+        return new Loan(this.getId(),amount,(double)Math.round(amount*200)/100,
                 Timestamp.valueOf(LocalDateTime.now()),
                 Timestamp.valueOf(LocalDateTime.now().plusMonths(1)));
     }

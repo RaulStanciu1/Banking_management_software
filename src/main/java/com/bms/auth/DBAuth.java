@@ -49,6 +49,8 @@ public class DBAuth {
             if(rs.next()){
                 pass = rs.getString(1);
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -75,6 +77,7 @@ public class DBAuth {
             stmt.setInt(3,currStr);
             stmt.setString(4,bankingCode);
             stmt.execute();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -96,6 +99,8 @@ public class DBAuth {
             if(!rs.next()){
                 usernameExists=false;
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -120,6 +125,8 @@ public class DBAuth {
                         rs.getString("banking_code"),rs.getInt("currency"),
                         rs.getDouble("balance"));
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
@@ -143,6 +150,8 @@ public class DBAuth {
             if(rs.next()){
                 user = new Admin(rs.getInt("id"),rs.getString("username"));
             }
+            rs.close();
+            stmt.close();
         }catch(Exception e){
             throw new Exception("Something went wrong");
         }
